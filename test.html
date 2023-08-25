@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/343524fab9.js" crossorigin="anonymous"></script>
+    <link href="http://fonts.cdnfonts.com/css/matter-wild" rel="stylesheet">
+    <link rel="stylesheet" href="test_create_final.css">
+    <style>
+        /* # The Rotating Marker # */
+details summary::-webkit-details-marker { display: none; }
+summary::before {
+  font-family: 'Matter Wild', sans-serif;
+  content: "▶";
+  position: absolute;
+  top: 1rem;
+  left: 0.8rem;
+  transform: rotate(0);
+  transform-origin: center;
+  transition: 0.2s transform ease;
+}
+details[open] > summary:before {
+  transform: rotate(90deg);
+  transition: 0.45s transform ease;
+}
+
+/* # The Sliding Summary # */
+details { overflow: hidden; border-radius: 10px; box-shadow: 0 0.75rem 2rem 0 rgba(63, 63, 63, 0.3);}
+details summary {
+  position: relative;
+  z-index: 10;
+}
+@keyframes details-show {
+  from {
+    margin-bottom: -80%;
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+details > *:not(summary) {
+  animation: details-show 500ms ease-in-out;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+  color: transparent;
+  overflow: hidden;
+}
+details[open] > *:not(summary) { color: inherit; }
+
+/* # Style 7 # */
+details.style7 summary {
+  padding-left: 3rem;
+}
+details[open].style7 summary,
+details.style7:hover summary {
+  background: rgba(23, 151, 236, 0.2);
+  color: rgb(0, 0, 0);
+}
+details[open].style7 summary strong,
+details.style7:hover summary strong {
+  color: #000000;
+}
+details.style7:hover summary strong { color: #ff2a2a; }
+details.style7 summary::before {
+  content: 	"\0231B";
+  font-size: 1.5rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  transform: rotate(0);
+}
+details.style7:hover > summary::before {
+  content: "\023F3";
+}
+details[open].style7 > summary::before {
+  content: "\023F3";
+  transform: rotate(0deg);
+}
+details[open].style7 > summary:hover::before {
+  content: "\023F3";
+}
+details .moon-new { display: inline; }
+details .moon-full { display: none; }
+details[open] .moon-new { display: none; }
+details[open] .moon-full { display: inline; }
+details.style7 .content { background: rgb(255, 255, 255); }
+/* # Just Some Pretty Styles # */
+
+p { margin: 0; padding-bottom: 10px; }
+p:last-child { padding: 0; }
+details {
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 5px;
+  background: white;
+}
+summary {
+  border: 4px solid transparent;
+  outline: none;
+  padding: 1rem;
+  display: block;
+  background: rgb(255, 111, 111);
+  color: rgb(0, 0, 0);
+  padding-left: 2.2rem;
+  position: relative;
+  cursor: pointer;
+}
+details[open] summary,
+summary:hover {
+  color: #FFCA28;
+  background: rgb(104, 104, 104);
+}
+summary:hover strong,
+details[open] summary strong,
+summary:hover::before,
+details[open] summary::before {
+  color: #FFA128;
+}
+.content {
+  padding: 10px;
+  border: 2px solid rgb(255, 255, 255);
+  border-top: none;
+  
+}
+
+
+.accordion {
+background-color: #eee;
+color: rgb(0, 0, 0);
+cursor: pointer;
+padding: 18px;
+width: 100%;
+border: none;
+text-align: left;
+outline: none;
+font-size: 15px;
+transition: 0.4s;
+}
+
+.active, .accordion:hover {
+background-color: #ccc; 
+}
+
+.panel {
+padding: 0 18px;
+display: none;
+background-color: white;
+overflow: hidden;
+}
+
+
+.btn-group button {
+  background-color: #04AA6D; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+  width:33%;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+    </style>
+   </head>
+<body>
+    <div class="box">
+        <form  id="uploadform" name="time_test" action="/test/upload/" enctype="multipart/form-data" method="post">{% csrf_token %}
+            <p style="font-family: 'Matter Wild', sans-serif; font-size: 2em;">Hi how are you, create a test for students in This subject :{{ full_course_name }} </p>
+            <br>
+            <input type="hidden" name="selected_course" value="{{ course_id }}">
+            <textarea class="input100" type="text" name="test_title" placeholder="The title of the test comes here. (required)" required="true" onblur="title_validation();"></textarea><br>
+
+            <textarea class="input100" type="text" name="test_instruct" placeholder="Instructions about the test. (required)" required="true" onblur="instruction_validation();"></textarea><br>
+
+            <input  style="float:left; margin-top: 5px;" type="number" placeholder="maximum marks" name="max_marks" onblur="instruction_validation();" required="true">
+              
+            <input  style="float:left; margin-left: 20px; margin-top: 5px;" type="number"  placeholder="minimum marks" name="min_marks" onblur="instruction_validation();" required="true">
+            <br>
+            <br>
+            <p style="font-family: 'Matter Wild', sans-serif; font-size: 2em;">Start time and Date</p>
+            <input  style="float:left;font-family: 'Matter Wild', sans-serif;" type="date" id="start_date" placeholder="Start date" name="start_date" required="true">
+
+            <input style="float:left;margin-left: 20px;font-family: 'Matter Wild', sans-serif; " id="start_time" type="time" name="start_time" required="true">
+            <br>
+            <br>
+            <p style="font-family: 'Matter Wild', sans-serif; font-size: 2em;">End time and Date</p>
+            <input  style="float:left;font-family: 'Matter Wild', sans-serif;" type="date" id="end_date" name="end_date" placeholder="Start date" required="true">
+
+            <input style="float:left;margin-left: 20px;font-family: 'Matter Wild', sans-serif; " id="end_time" name="end_time" type="time" required="true"><!--add "pattern" attribute in all the above date and time inputs. date pattern must be yyyy-mm-dd and time pattern is 24 hr clock hh:mm-->
+            <br>
+            <br><br>
+            <br>
+            <input type="file" id="selectedfiles" name="test-files" class="inputfile"   onformchange="alert(this.files[0]);"/><!--add a attribute of only allowed file types.-->
+            <label for="file">Select Files (only one file is allowed, you may zip if multiple)</label>
+            <p style="color:rgb(0, 0, 0)" id="filesplaceholder"></p>
+            <br>
+            <br>
+            <div id="question-add">
+              <div style="text-align: center;">
+                <input type="button" class="button-question" value="Add More question" onclick="javascript: addQuestion();"/>
+              </div>
+              <br>
+              <div style="text-align: center;">
+                <input type="button" class="button-question" value="Remove question" onclick="javascript: removeQuestion();"/>
+              </div>
+              <br>
+              <div class="item" >
+                <textarea class="input200" style="margin-bottom: 20px;" type="text" id="1" name="question-1" placeholder="Question 1 (atleast one question is required)" required="true" onblur="title_validation();"></textarea>
+              </div>
+            </div>
+            <br>
+            <div class="btn-block" style="text-align: center;">
+              <button type="submit" class="button-question" style="color:white; background-color: black; height:40px; font-size:large">Create</button>
+            </div>
+          </form>
+          <details class="style7">
+            <summary><span style="font-family: 'Matter Wild', sans-serif;overflow-wrap: break-word;font-size:15px;" class="moon-new">{{news_each.news_title}}</span><span style="font-family: 'Matter Wild', sans-serif;align-items:right;font-size:20px;" class="moon-full test-date"><strong>{{news_each.news_datetime.day}}/{{news_each.news_datetime.month}}/{{news_each.news_datetime.year}} {{news_each.news_datetime.hour}}:{%if news_each.news_datetime.minute < 10 %}0{%endif%}{{news_each.news_datetime.minute}}</strong></span></summary>
+            <div class="content">
+                <p style="font-family: 'Matter Wild', sans-serif;overflow-wrap: break-word;font-size:15px;">{{news_each.news_description}}</p>
+                <div class="btn-group">
+                    <button>Apple</button>
+                    <button>Samsung</button>
+                    <button>Sony</button>
+                </div>
+            </div>
+          </details>
+          
+    </div>
+    <script src="test_create_final.js"></script>
+</body>
+</html>

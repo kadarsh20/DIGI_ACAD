@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/343524fab9.js" crossorigin="anonymous"></script>
+    <link href="http://fonts.cdnfonts.com/css/matter-wild" rel="stylesheet">
+    <script src="https://cdn.plyr.io/2.0.15/plyr.js"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/2.0.15/plyr.css">
+<style>
+    .box{
+    width: 100%;
+max-width: 1140px;margin: auto;
+padding: 2rem 2rem 2rem 2rem;
+background: rgba(255, 255, 255, 0.375);
+box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.2);
+border-radius: 2rem;
+border: 1px solid rgba(255, 255, 255, 0.125);
+}
+p#title{
+    font-family: 'Matter Wild', sans-serif;
+    font-size: 2em;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.375);
+box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.2);
+border: 1px solid rgba(255, 255, 255, 0.125);
+width: 100px;
+text-align: center;
+cursor: pointer;
+border-radius: 15px;
+}
+.dropdown:hover{
+  background-color: rgb(67, 249, 255);
+  color: black;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  border-radius: 1rem;
+border: 1px solid rgba(255, 255, 255, 0.125);
+color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+
+}
+.button-forum{
+  color:rgb(0, 0, 0);
+  background-color: rgb(242, 255, 67);
+  height:50px;
+  font-size:large;
+  font-family: 'Matter Wild', sans-serif;
+  border-radius: 1rem;
+border: 1px solid rgba(255, 255, 255, 0.125);
+box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.2);
+width:60%
+}
+.button-forum:hover{
+  background-color: rgb(67, 249, 255);
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+    <body >
+        <div class="box">
+            <p id="title">{{ Title of the lecture comes here.}}<br></p>
+            <p id="title" style="display:inline" >{{date comes here.}}</p><div style="display:inline; float:right; font-family: 'Matter Wild', sans-serif; font-size: 1.5 em;" class="dropdown">
+                <span >Documents</span>
+                <div class="dropdown-content">
+                <p>{{documents comes here}}</p>
+                
+                </div>
+                  </div>
+            <video style="background: rgba(255, 255, 255, 0.375); box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.2);" id="plyr-video"  controls>
+                <source src="C:\Users\sumit\Downloads\sample-mp4-file.mp4"  type="video/mp4">
+              </video>
+              <br>
+              <div class="btn-block" style="text-align: center;">
+                <a href="/forum/create/{{course_id}"><button type="submit"  class="button-forum" >Create a Discussion?</button></a>
+              </div>
+        </div>
+        <script>
+            plyr.setup("#plyr-video");
+        </script>
+</body>
+</html>

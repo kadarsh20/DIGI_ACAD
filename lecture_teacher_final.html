@@ -1,0 +1,257 @@
+<html>
+  <head>
+    <script src="https://kit.fontawesome.com/343524fab9.js" crossorigin="anonymous"></script>
+    <style>
+      a {
+        font-size: 2em;
+        text-decoration:none;
+        font-weight: bold;
+        overflow-wrap: break-word;
+      }
+      a:link, a:visited {
+    color: blue;
+}
+a:hover {
+    color: red;
+    font-size: 250%;
+}
+#subject {
+  display: block;
+}
+{% for each_course_id in all_course_list %}
+{% for i, s_c_value in subject_code.items %}
+{% if s_c_value.0 == each_course_id|slice:"0:2" %}
+#course-{{ i|add:'1' }}-each{
+  display: none;
+}
+{%endif%}
+{%endfor%}
+{%endfor%}
+
+    </style>
+    <link rel="stylesheet" href="test_create_final.css">
+    <style>
+        /* # The Rotating Marker # */
+details summary::-webkit-details-marker { display: none; }
+summary::before {
+  font-family: 'Matter Wild', sans-serif;
+  content: "▶";
+  position: absolute;
+  top: 1rem;
+  left: 0.8rem;
+  transform: rotate(0);
+  transform-origin: center;
+  transition: 0.2s transform ease;
+}
+details[open] > summary:before {
+  transform: rotate(90deg);
+  transition: 0.45s transform ease;
+}
+
+/* # The Sliding Summary # */
+details { overflow: hidden; border-radius: 10px; box-shadow: 0 0.75rem 2rem 0 rgba(63, 63, 63, 0.3);}
+details summary {
+  position: relative;
+  z-index: 10;
+}
+@keyframes details-show {
+  from {
+    margin-bottom: -80%;
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+details > *:not(summary) {
+  animation: details-show 500ms ease-in-out;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+  color: transparent;
+  overflow: hidden;
+}
+details[open] > *:not(summary) { color: inherit; }
+
+/* # Style 7 # */
+details.style7 summary {
+  padding-left: 3rem;
+}
+details[open].style7 summary,
+details.style7:hover summary {
+  background: rgba(23, 151, 236, 0.2);
+  color: rgb(0, 0, 0);
+}
+details[open].style7 summary strong,
+details.style7:hover summary strong {
+  color: #000000;
+}
+details.style7:hover summary strong { color: #ff2a2a; }
+details.style7 summary::before {
+  content: 	"\0231B";
+  font-size: 1.5rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  transform: rotate(0);
+}
+details.style7:hover > summary::before {
+  content: "\023F3";
+}
+details[open].style7 > summary::before {
+  content: "\023F3";
+  transform: rotate(0deg);
+}
+details[open].style7 > summary:hover::before {
+  content: "\023F3";
+}
+details .moon-new { display: inline; }
+details .moon-full { display: none; }
+details[open] .moon-new { display: none; }
+details[open] .moon-full { display: inline; }
+details.style7 .content { background: rgb(255, 255, 255); }
+/* # Just Some Pretty Styles # */
+
+p { margin: 0; padding-bottom: 10px; }
+p:last-child { padding: 0; }
+details {
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 5px;
+  background: white;
+}
+summary {
+  border: 4px solid transparent;
+  outline: none;
+  padding: 1rem;
+  display: block;
+  background: rgb(255, 111, 111);
+  color: rgb(0, 0, 0);
+  padding-left: 2.2rem;
+  position: relative;
+  cursor: pointer;
+}
+details[open] summary,
+summary:hover {
+  color: #FFCA28;
+  background: rgb(104, 104, 104);
+}
+summary:hover strong,
+details[open] summary strong,
+summary:hover::before,
+details[open] summary::before {
+  color: #FFA128;
+}
+.content {
+  padding: 10px;
+  border: 2px solid rgb(255, 255, 255);
+  border-top: none;
+  
+}
+
+
+.accordion {
+background-color: #eee;
+color: rgb(0, 0, 0);
+cursor: pointer;
+padding: 18px;
+width: 100%;
+border: none;
+text-align: left;
+outline: none;
+font-size: 15px;
+transition: 0.4s;
+}
+
+.active, .accordion:hover {
+background-color: #ccc; 
+}
+
+.panel {
+padding: 0 18px;
+display: none;
+background-color: white;
+overflow: hidden;
+}
+
+
+.btn-group button {
+  background-color: #04AA6D; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+  width:33%;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="subject" id="subject">
+        <h1 style='font-weight: bold; overflow-wrap: break-word; text-align: center;'>Your Subjects.</h1>
+        <h3 style='font-weight: bold; overflow-wrap: break-word;'>Please select subjects, to see lectures for that subject.</h3>
+        <ul>
+          {% for course_id in all_course_list %}
+            {% for i, s_c_value in subject_code.items %}
+              {% if s_c_value.0 == course_id|slice:"0:2" %}
+                <li><i class="fa-solid fa-circle-chevron-right"></i><a href="#" class="course" id="course-{{ i|add:'1' }}" onclick="showcontent(this.id + '-each');">{{ s_c_value.1 }}</a></li>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% for each_course_id in all_course_list %}
+    {% for i, s_c_value in subject_code.items %}
+    {% if s_c_value.0 == each_course_id|slice:"0:2" %}
+        <div id="course-{{ i|add:'1' }}-each">
+            <p>subject 1</p>
+            <a href="#" class="course" onclick="showcontent(this.parentNode.id);">goback</a></li>
+            {% for lecture_of_courses in lecture_all_list %}
+        {% for lecture_each in lecture_of_courses %}
+            <details class="style7">
+              <summary><span style="overflow-wrap: break-word;font-size:15px;" class="moon-new">{{lecture_each.lecture_title}}</span><span style="align-items:right;font-size:20px;" class="moon-full test-date"><strong>{{lecture_each.lecture_datetime.day}}/{{lecture_each.lecture_datetime.month}}/{{lecture_each.lecture_datetime.year}} {{lecture_each.lecture_datetime.hour}}:{%if lecture_each.lecture_datetime.minute < 10 %}0{%endif%}{{lecture_each.lecture_datetime.minute}}</strong></span></summary>
+              <div class="content">
+                <form action="/lecture/view/{{lecture_each.lecture_unique_id}}" method="get"><button type="submit" style="height: 30px; margin-bottom: 10px;" class="btn btn-outline-secondary completed-course-details" value="View lecture">View Lecture</button></form>
+                <form action="/lecture/edit/{{lecture_each.lecture_unique_id}}" method="get"><button type="submit" style="height: 30px; margin-bottom: 10px;" class="btn btn-outline-secondary completed-course-details" value="Edit lecture">Edit Lecture</button></form>
+              </div>
+              </details>
+      {% endfor %}
+      {% endfor %}
+        </div>
+        {% endif %}
+    {% endfor %}
+    {% endfor %}
+    </div>
+    
+    <script>
+      function showcontent(id) {
+        console.log(id)
+        var subjectmain = document.getElementById("subject");
+        var each =document.getElementById( id);
+
+
+        var displayeach = each.style.display;
+        if (displayeach == 'block'){
+          subjectmain.style.display = 'block'
+          each.style.display = 'none'
+        }
+        else{
+          subjectmain.style.display =  'none'
+          each.style.display ='block'
+        }
+      }
+    </script>
+  </body>
+</html>

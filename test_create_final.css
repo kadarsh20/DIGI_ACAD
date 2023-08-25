@@ -1,0 +1,107 @@
+.box{
+    width: 100%;
+max-width: 1500px;
+
+padding: 2rem 2rem;
+align-items: center;
+background: rgba(255, 255, 255, 0.375);
+box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.2);
+border-radius: 2rem;
+border: 1px solid rgba(255, 255, 255, 0.125);
+}
+.input100 {
+position: relative;
+display: block;
+width: 100%;
+background: #fff;
+border-radius: 3px;
+font-family: 'Matter Wild', sans-serif;
+font-size: 30px;
+color: #8f8fa1;
+line-height: 1.5;
+outline: none;
+border: none;
+background: rgba(255, 255, 255, 0.375);
+box-shadow: 0 0.75rem 2rem 0 rgba(214, 21, 21, 0.2);
+resize: vertical;
+}
+.input200 {
+position: relative;
+display: block;
+width: 100%;
+background: #fff;
+border-radius: 3px;
+font-family: 'Matter Wild', sans-serif;
+font-size: 30px;
+color: #8f8fa1;
+line-height: 1.5;
+outline: none;
+border: none;
+background: rgba(255, 255, 255, 0.375);
+box-shadow: 0 0.75rem 2rem 0 rgba(23, 151, 236, 0.2);
+resize: vertical;
+}
+.inputfile {
+width: 0.1px;
+height: 0.1px;
+opacity: 0;
+overflow: hidden;
+position: absolute;
+z-index: -1;
+}
+.inputfile + label {
+font-size: 1em;
+font-weight: 700;
+width: 100%;
+font-family: 'Matter Wild', sans-serif;
+text-align: center;
+color: rgb(0, 0, 0);
+background-color: rgb(255, 208, 208);
+display: inline-block;
+cursor: pointer;
+border-radius: 10px;
+height: 30px;
+box-shadow: 0 0.75rem 2rem 0 rgba(63, 63, 63, 0.3);
+}
+.button-question {
+color: rgb(0, 0, 0);
+background-color: rgba(23, 151, 236, 0.2);
+box-shadow: 0 0.75rem 2rem 0 rgba(63, 63, 63, 0.3);
+display: inline-block;
+cursor: pointer;
+border-radius: 10px;
+font-size: 1em;
+font-weight: 700;
+width: 45%;
+font-family: 'Matter Wild', sans-serif;
+text-align: center;
+}
+
+.inputfile:hover + label,
+.inputfile + label:hover {
+background-color: rgb(168, 220, 255);
+outline: 1px dotted #000;
+outline: -webkit-focus-ring-color auto 5px;
+}
+.inputfile + label * {
+pointer-events: none;
+}
+input{
+width: 49%;
+padding: 0;
+border: none;
+outline: none;
+box-sizing: border-box;
+}
+input {
+background: #ecf0f3;
+padding: 10px;
+padding-left: 20px;
+height: 50px;
+font-size: 14px;
+border-radius: 50px;
+box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
+input::placeholder{
+font-family: 'Matter Wild', sans-serif;
+}

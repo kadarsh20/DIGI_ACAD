@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/343524fab9.js" crossorigin="anonymous"></script>
+    <link href="http://fonts.cdnfonts.com/css/matter-wild" rel="stylesheet">
+    <link rel="stylesheet" href="test_create_final.css">
+   </head>
+<body>
+    <div class="box" style="margin:auto">
+        <form  id="uploadform" name="time_test" action="/test/upload/" enctype="multipart/form-data" method="post">{% csrf_token %}
+            <p style="font-family: 'Matter Wild', sans-serif; font-size: 2em;">Hi how are you, create a test for students in This subject :{{ full_course_name }} </p>
+            <br>
+            <input type="hidden" name="selected_course" value="{{ course_id }}">
+            <textarea class="input100" type="text" name="test_title" placeholder="The title of the test comes here. (required)" required="true" onblur="title_validation();"></textarea><br>
+
+            <textarea class="input100" type="text" name="test_instruct" placeholder="Instructions about the test. (required)" required="true" onblur="instruction_validation();"></textarea><br>
+
+            <input  style="float:left; margin-top: 5px;" type="number" placeholder="maximum marks" name="max_marks" onblur="instruction_validation();" required="true">
+              
+            <input  style="float:left; margin-left: 20px; margin-top: 5px;" type="number"  placeholder="minimum marks" name="min_marks" onblur="instruction_validation();" required="true">
+            <br>
+            <br>
+            <p style="font-family: 'Matter Wild', sans-serif; font-size: 2em;">Start time and Date</p>
+            <input  style="float:left;font-family: 'Matter Wild', sans-serif;" type="date" id="start_date" placeholder="Start date" name="start_date" required="true">
+
+            <input style="float:left;margin-left: 20px;font-family: 'Matter Wild', sans-serif; " id="start_time" type="time" name="start_time" required="true">
+            <br>
+            <br>
+            <p style="font-family: 'Matter Wild', sans-serif; font-size: 2em;">End time and Date</p>
+            <input  style="float:left;font-family: 'Matter Wild', sans-serif;" type="date" id="end_date" name="end_date" placeholder="Start date" required="true">
+
+            <input style="float:left;margin-left: 20px;font-family: 'Matter Wild', sans-serif; " id="end_time" name="end_time" type="time" required="true"><!--add "pattern" attribute in all the above date and time inputs. date pattern must be yyyy-mm-dd and time pattern is 24 hr clock hh:mm-->
+            <br>
+            <br><br>
+            <br>
+            <input type="file" id="selectedfiles" name="test-files" class="inputfile"   onformchange="alert(this.files[0]);"/><!--add a attribute of only allowed file types.-->
+            <label for="file">Select Files (only one file is allowed, you may zip if multiple)</label>
+            <p style="color:rgb(0, 0, 0)" id="filesplaceholder"></p>
+            <br>
+            <br>
+            <div id="question-add">
+              <div style="text-align: center;">
+                <input type="button" class="button-question" value="Add More question" onclick="javascript: addQuestion();"/>
+              </div>
+              <br>
+              <div style="text-align: center;">
+                <input type="button" class="button-question" value="Remove question" onclick="javascript: removeQuestion();"/>
+              </div>
+              <br>
+              <div class="item" >
+                <textarea class="input200" style="margin-bottom: 20px;" type="text" id="1" name="question-1" placeholder="Question 1 (atleast one question is required)" required="true" onblur="title_validation();"></textarea>
+              </div>
+            </div>
+            <br>
+            <div class="btn-block" style="text-align: center;">
+              <button type="submit" class="button-question" style="color:white; background-color: black; height:40px; font-size:large">Create</button>
+            </div>
+          </form>
+    </div>
+    <script src="test_create_final.js"></script>
+</body>
+</html>
